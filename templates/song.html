@@ -1,10 +1,30 @@
 <html>
+{% load staticfiles %}
 <head>
     <title>Hello-{{ song.name }}</title>
+    <link href="{% static 'css/app.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/normalize.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/skeleton.css' %}" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
 </head>
 <body>
-<h1>{{ song.name }}</h1>
-<p>{{ song.tabs_and_chords |safe }}</p>
+<h1 id="header">{{ song.name }}</h1>
+
+
+<div class="container">
+    <!-- columns should be the immediate child of a .row -->
+    <div class="row">
+        <div class="eleven">
+            <ul>
+                <p>{{ song.tabs_and_chords |safe }}</p>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
 </body>
 
 </html>
