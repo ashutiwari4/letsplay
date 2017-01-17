@@ -1,0 +1,18 @@
+<html>
+{% load staticfiles %}
+<head>
+    <title>Let's play</title>
+    <link href="{% static 'css/app.css' %}" rel="stylesheet"/>
+</head>
+<body>
+<h1 id="header">Let's play it.</h1>
+<ul>
+    {% for genre in genres %}
+        <h2>{{ genre.name }}</h2>
+        {% for song in genre.song_set.all %}
+            <li><a href="/song/{{ song.id }}">{{ song.name }}</a><br/></li>
+        {% endfor %}
+    {% endfor %}
+</ul>
+</body>
+</html>
