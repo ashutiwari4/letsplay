@@ -1,21 +1,32 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.template import loader
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.pagination import PageNumberPagination
 
+
 from .serializers import *
 from .models import Genre, Song
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
 
 
 def index(request):
-    template = loader.get_template('index.html')
+    queryset = Genre.objects.all()
+    paginator = Paginator(queryset, 10)
+    page = request.GET.get('page')
+    try:
+        queryset = paginator.page(page)
+    except PageNotAnInteger:
+        queryset = paginator.page(1)
+    except EmptyPage:
+        queryset = paginator.page(paginator.num_pages)
     context = {
-        'genres': Genre.objects.all(),
+        'genres': queryset,
     }
-    return HttpResponse(template.render(context, request))
+    return render(request, 'index.html', context)
 
 
 def song(request, id):
@@ -43,4 +54,10 @@ class GenreList(ModelViewSet):
 class SongList(ModelViewSet):
     queryset = Song.objects.all()
     serializer_class = SongSerializer
+    pagination_class = StandardResultsSetPagination
+
+
+class SongLinkList(ModelViewSet):
+    queryset = Song.objects.all()
+    serializer_class = SongLinkList
     pagination_class = StandardResultsSetPagination

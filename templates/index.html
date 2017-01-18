@@ -5,9 +5,13 @@
     <link href="{% static 'css/app.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/normalize.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/skeleton.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/jquery.dynatable.css' %}" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/jquery.dynatable.js' %}"></script>
 </head>
 <body>
 <h1 id="header">Let's play it.</h1>
@@ -28,7 +32,26 @@
                 {% endfor %}
             </ul>
         </div>
+
+
+        <div class="pagination one-fourth column">
+    <span class="step-links one-fourth column">
+        {% if genres.has_previous %}
+            <a href="?page={{ genres.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ genres.number }} of {{ genres.paginator.num_pages }}.
+        </span>
+
+        {% if genres.has_next %}
+            <a href="?page={{ genres.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+        </div>
     </div>
 </div>
+
+
 </body>
 </html>

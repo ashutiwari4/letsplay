@@ -12,3 +12,9 @@ class SongSerializer(ModelSerializer):
     class Meta:
         model = Song
         fields = '__all__'
+
+
+class SongLinkList(ModelSerializer):
+    class Meta:
+        model = Song
+        fields = ('id', 'name')
