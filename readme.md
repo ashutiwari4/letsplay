@@ -7,7 +7,7 @@ Email: ashutiwari4@gmail.com <br /><br />
 This app serves Tab and Chords to Guitar players. App is written in Python.
 This app includes fallowing things.<br /><br />
 
-A) WebApp (http://ashutiwari4.pythonanywhere.com/) <br /><br />
+A) WebApp <br />(http://ashutiwari4.pythonanywhere.com/) <br /><br />
 B) APIs for other platform such as mobile <br />
     http://ashutiwari4.pythonanywhere.com/api/songs/ <br />
     http://ashutiwari4.pythonanywhere.com/api/genre/ <br />
