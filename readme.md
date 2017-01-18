@@ -1,4 +1,4 @@
-## Udacity project Capstone Server ##<br /><br /><br />
+## Udacity project Capstone Server <br /><br />
 
 @author <br />
 Ashutosh Tiwari<br />
