@@ -1,7 +1,7 @@
 ## Udacity project Capstone Server ##<br /><br /><br />
 
-@author
-Ashutosh Tiwari
+@author <br />
+Ashutosh Tiwari<br />
 Email: ashutiwari4@gmail.com <br /><br />
 
 This app serves Tab and Chords to Guitar players. App is written in Python.
