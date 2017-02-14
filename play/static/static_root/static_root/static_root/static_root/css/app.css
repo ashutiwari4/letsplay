@@ -3,6 +3,41 @@
     color: #b63d51;
 }
 
-.genre {
-    background-color: #2e6da4;
+#song_div {
+    background-color: #ceccbe;
+    width: 300px;
+    height: 400px;
+    margin: 32px;
+
+}
+
+#song_name {
+    display: inline-block;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.slider {
+    width: 50%;
+    margin: 100px auto;
+}
+
+.slick-slide {
+    margin: 0px 20px;
+}
+
+.slick-slide img {
+    width: 100%;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: black;
 }

@@ -2,9 +2,9 @@ import urllib2
 from bs4 import BeautifulSoup
 import requests
 import unicodedata
+import json
 
 url = "http://tabandchord.com/category/chord/chord-hindi/?first_letter=A"
-
 hdr = {'User-Agent': 'Mozilla/5.0'}
 soup = BeautifulSoup(urllib2.urlopen(urllib2.Request(url, headers=hdr)), "lxml")
 
@@ -31,6 +31,42 @@ for item in pageList:
 
 # parsing required data
 server_url = 'http://127.0.0.1:8000/api/songs/'
+server_details_url = "http://127.0.0.1:8000/api/song_details/"
+
+
+class SongDetailsForm(object):
+    def __init__(self, thumbnail, image_url, link, image_encoding, accent_color):
+        self.thumbnail = thumbnail
+        self.image_url = image_url
+        self.link = link
+        self.image_encoding = image_encoding
+        self.accent_color = accent_color
+
+
+def songinfo(query, id):
+    f = open("./jsondata.json")
+    data = json.load(f)
+    # print json.dumps(data)
+    for item in data['value']:
+        detailsData = {
+            "name": id,
+            "thumbnail": item['thumbnailUrl'],
+            "image_url": item['contentUrl'],
+            "link": item['hostPageDisplayUrl'],
+            "image_encoding": item['encodingFormat'],
+            "accent_color": item['accentColor']
+        }
+
+        try:
+            print detailsData
+            if detailsData['image_url'] != '':
+                ashu = requests.post(server_details_url, detailsData)
+                print (ashu.status_code, ashu.reason)
+        except:
+            'Something is wrong!'
+    return
+
+
 for song in songList:
     soup = BeautifulSoup(urllib2.urlopen(urllib2.Request(song, headers=hdr)), "lxml")
     title = soup.find("h1", {"class": "entry-title"}).getText().strip()
@@ -44,12 +80,14 @@ for song in songList:
         "name": title,
         "tabs_and_chords": tabs_n_chord,
         "tags": "Hindi, Bollywood",
-        "genre": 8
+        "genre": 15
     }
     try:
         print data
         if tabs_n_chord != '':
             r = requests.post(server_url, data)
+            songinfo('love', str(json.loads(r._content)['id']))
+
             print (r.status_code, r.reason)
     except:
         'Something is wrong!'

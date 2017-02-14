@@ -2,3 +2,15 @@
     text-align: center;
     color: #b63d51;
 }
+
+#song_div {
+    background-color: #ceccbe;
+    width: 960px;
+    height: 600px;
+    margin: 32px;
+
+}
+
+#song_name {
+    display: inline-block;
+}

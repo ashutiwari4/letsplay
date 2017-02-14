@@ -20,3 +20,12 @@ class Song(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class SongDetailsForm(models.Model):
+    thumbnail = models.CharField(max_length=300)
+    image_url = models.CharField(max_length=300)
+    link = models.CharField(max_length=300)
+    image_encoding = models.CharField(max_length=20)
+    accent_color = models.CharField(max_length=10)
+    name = models.ForeignKey(Song)

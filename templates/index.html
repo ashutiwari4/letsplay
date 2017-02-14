@@ -3,6 +3,8 @@
 <head>
     <title>Let's play</title>
     <link href="{% static 'css/app.css' %}" rel="stylesheet"/>
+    <link href="{% static 'slick/slick.css' %}" rel="stylesheet"/>
+    <link href="{% static 'slick/slick-theme.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/normalize.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/skeleton.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/jquery.dynatable.css' %}" rel="stylesheet"/>
@@ -12,22 +14,67 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{% static 'js/app.js' %}"></script>
     <script src="{% static 'js/jquery.dynatable.js' %}"></script>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .slider {
+            width: 50%;
+            margin-bottom: 100px;
+        }
+
+        .slick-slide {
+            margin: 0px 20px;
+        }
+
+        .slick-slide img {
+            width: 100%;
+        }
+
+        .slick-prev:before,
+        .slick-next:before {
+            color: black;
+        }
+    </style>
 </head>
 <body>
 <h1 id="header">Let's play it.</h1>
+
 
 <!-- .container is main centered wrapper -->
 <div class="container">
     <!-- columns should be the immediate child of a .row -->
     <div class="row">
-        <div class="one-fourth column">
+        <div class="twelve column">
             <ul>
                 {% for genre in genres %}
                     <div class="genre">
-                        <h2>{{ genre.name }}</h2>
-                        {% for song in genre.song_set.all %}
-                            <li><a href="/song/{{ song.id }}">{{ song.name }}</a><br/></li>
-                        {% endfor %}
+                        <table style="width:100%">
+                            <tr>
+                                <th><h2>{{ genre.name }}</h2></th>
+                                <th style="text-align: end">More</th>
+                            </tr>
+                        </table>
+                        <section class="center slider" style="height: 300px; width: 960px;">
+                            {% if genre.song_set.all.count == 0 %}
+                                <h4 style="text-align: center">No data available!</h4>
+                            {% endif %}
+                            {% for song in genre.song_set.all %}
+                                {% if forloop.counter <= 10 %}
+                                    <div>
+                                        <img src="http://placehold.it/350x300?text=1">
+                                        <div><a href="/song/{{ song.id }}">
+                                            {{ song.name | truncatechars:80 }}</a></div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </section>
                     </div>
                 {% endfor %}
             </ul>
@@ -52,6 +99,31 @@
     </div>
 </div>
 
+
+<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="{% static 'slick/slick.js' %}"></script>
+<script type="text/javascript">
+    $(document).on('ready', function () {
+        $(".regular").slick({
+            dots: true,
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 3
+        });
+        $(".center").slick({
+            dots: true,
+            infinite: true,
+            centerMode: true,
+            slidesToShow: 3,
+            slidesToScroll: 3
+        });
+        $(".variable").slick({
+            dots: true,
+            infinite: true,
+            variableWidth: true
+        });
+    });
+</script>
 
 </body>
 </html>

@@ -1,9 +1,11 @@
+from requests import Response
+
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
+from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.pagination import PageNumberPagination
-
 
 from .serializers import *
 from .models import Genre, Song
@@ -15,7 +17,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request):
     queryset = Genre.objects.all()
-    paginator = Paginator(queryset, 10)
+    paginator = Paginator(queryset, 5)
     page = request.GET.get('page')
     try:
         queryset = paginator.page(page)
@@ -56,8 +58,17 @@ class SongList(ModelViewSet):
     serializer_class = SongSerializer
     pagination_class = StandardResultsSetPagination
 
+    def retrieve(self, request, pk=None):
+        u = request.user
+        queryset = Song.objects.filter(user=u, pk=pk)
+        if not queryset:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        else:
+            serializer = SongSerializer(queryset)
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
-class SongLinkList(ModelViewSet):
-    queryset = Song.objects.all()
+
+class SongDetails(ModelViewSet):
+    queryset = SongDetailsForm.objects.all()
     serializer_class = SongLinkList
     pagination_class = StandardResultsSetPagination

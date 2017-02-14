@@ -1,3 +1,4 @@
+from play.models import SongDetailsForm
 from .models import Genre, Song
 from rest_framework.serializers import ModelSerializer
 
@@ -16,5 +17,6 @@ class SongSerializer(ModelSerializer):
 
 class SongLinkList(ModelSerializer):
     class Meta:
-        model = Song
-        fields = ('id', 'name')
+        model = SongDetailsForm
+        fields = '__all__'
+        # fields = ('id', 'thumbnail')
