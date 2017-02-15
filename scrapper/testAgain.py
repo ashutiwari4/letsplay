@@ -1,27 +1,8 @@
-import requests
-import json
+import urllib,re,json
 
-server_url = 'http://127.0.0.1:8000/api/songs/'
+f = open('../img/00000001.jpg', 'wb')
+url = urllib.unquote('http:\/\/www.bing.com\/cr?IG=DD6C6723DAD140FDB47C0F84DD3A58BB&CID=2C4EEE75ECA063E7379BE45FEDB2620C&rd=1&h=nr-rkMaw6H31agIINcdqaQbEkao3lo7upmbYp9HVyAw&v=1&r=http%3a%2f%2f2.bp.blogspot.com%2f-ypV-igMHG7I%2fUwsYzpXsHhI%2fAAAAAAAABlU%2fhDLUue8kcbs%2fs1600%2fAadat.jpg&p=DevEx,5014.1').decode('utf8')
+s = re.findall(r'(https?://\S+)', url)[0]
+f.write(urllib.urlopen(s).read())
+f.close()
 
-
-def songinfo(query, songName):
-    title = "cool"
-    content = "hi"
-    tabs_n_chord = "hello"
-
-    data = {
-        "name": title,
-        "tabs_and_chords": tabs_n_chord,
-        "tags": "Hindi, Bollywood",
-        "genre": 15
-    }
-    try:
-        print data
-        if tabs_n_chord != '':
-            r = requests.post(server_url, data)
-            print json.loads(r._content)['id']
-            print (r.status_code, r.reason)
-    except:
-        'Something is wrong!'
-
-songinfo("as","as")
