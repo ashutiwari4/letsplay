@@ -28,4 +28,4 @@ class SongDetailsForm(models.Model):
     link = models.CharField(max_length=300)
     image_encoding = models.CharField(max_length=20)
     accent_color = models.CharField(max_length=10)
-    name = models.ForeignKey(Song)
+    name = models.ForeignKey(Song, related_name='songdetails')

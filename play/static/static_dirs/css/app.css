@@ -1,16 +1,59 @@
+#html {
+    background: #222;
+}
+
 #header {
     text-align: center;
-    color: #b63d51;
+    color: #ff4a00;
+}
+
+.genre {
+    background: #333333;
+    border-radius: 10px;
+    padding-left: .5em;
+    padding-right: .5em;
 }
 
 #song_div {
     background-color: #ceccbe;
     width: 960px;
-    height: 600px;
+    height: 250px;
     margin: 32px;
 
 }
 
+a:link {
+    text-decoration: none;
+    text-anchor: none;
+}
+
+a:focus {
+    outline: 0;
+}
+
+a:hover {
+    text-decoration: none;
+    text-anchor: none;
+}
+
 #song_name {
     display: inline-block;
+}
+
+h2 {
+    color: #ff4a00;
+    padding-left: .5em;
+}
+
+#item_div {
+    border-radius: 5px;
+}
+
+#song_title {
+    padding: .5em;
+    height: 60px;
+    max-height: 60px;
+    overflow: hidden;
+    color: #ffffff;
+    text-align: center;
 }

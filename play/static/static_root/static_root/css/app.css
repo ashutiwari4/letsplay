@@ -1,3 +1,7 @@
+#html {
+    background: #222;
+}
+
 #header {
     text-align: center;
     color: #b63d51;
@@ -5,39 +9,39 @@
 
 #song_div {
     background-color: #ceccbe;
-    width: 300px;
-    height: 400px;
+    width: 960px;
+    height: 250px;
     margin: 32px;
 
+}
+
+a:link {
+    color: red;
+    text-decoration: none;
 }
 
 #song_name {
     display: inline-block;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
+h2 {
+    color: #ff2523;
 }
 
-* {
-    box-sizing: border-box;
+#item_div {
+    border: 2px solid red;
+    border-radius: 5px;
 }
 
-.slider {
-    width: 50%;
-    margin: 100px auto;
+#song_title {
+    padding: .5em;
+    height: 60px;
+    max-height: 60px;
+    overflow: hidden;
+    color: #ff2523;
+    text-align: center;
 }
 
-.slick-slide {
-    margin: 0px 20px;
-}
-
-.slick-slide img {
-    width: 100%;
-}
-
-.slick-prev:before,
-.slick-next:before {
-    color: black;
+button:before {
+    color: #ff0;
 }
