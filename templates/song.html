@@ -9,20 +9,30 @@
     <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
 </head>
-<body>
-<h1 id="header">{{ song.name }}</h1>
+<body style="background-color: #222222">
+<div id="header">
+    <h3 style="padding: .5em"><a href="../../#" style="color: #ff4a00">Let's play...</a></h3>
+    <h1 id="tagline" style="text-align: center;color: #ff4a00;font-family: monospace">{{ song.name }}</h1>
+
+</div>
 
 
 <div class="container">
     <!-- columns should be the immediate child of a .row -->
     <div class="row">
         <div class="eleven">
+
+            {% if "youtube" in song.songdetails.first.link %}
+                <h3 style="color: #ceccbe;font-family: fantasy;padding-top:  1em;"> Watch it on YouTube : </h3></br>
+                <embed width="854" height="480" src="https://www.youtube.com/v/XGSy3_Czz8k">
+            {% endif %}
             <ul>
                 <p>{{ song.tabs_and_chords |safe }}</p>
             </ul>
         </div>
     </div>
 </div>
+<div id="footer">Under development </br> Email: ashutiwari4@gmail.com</div>
 
 
 </body>

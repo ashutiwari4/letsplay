@@ -39,6 +39,14 @@ def song(request, id):
     return HttpResponse(template.render(context, request))
 
 
+def showmore(request, id):
+    template = loader.get_template('showmore.html')
+    context = {
+        'g': Genre.objects.get(id=id)
+    }
+    return HttpResponse(template.render(context, request))
+
+
 # api/
 
 class StandardResultsSetPagination(PageNumberPagination):
@@ -54,6 +62,21 @@ class GenreList(ModelViewSet):
 
 
 class SongList(ModelViewSet):
+    queryset = Song.objects.all()
+    serializer_class = SongSerializer
+    pagination_class = StandardResultsSetPagination
+
+    def retrieve(self, request, pk=None):
+        u = request.user
+        queryset = Song.objects.filter(user=u, pk=pk)
+        if not queryset:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        else:
+            serializer = SongSerializer(queryset)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class ShowMore(ModelViewSet):
     queryset = Song.objects.all()
     serializer_class = SongSerializer
     pagination_class = StandardResultsSetPagination

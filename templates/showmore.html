@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <title>Hello-{{ song.name }}</title>
+    <link href="{% static 'css/app.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/normalize.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/skeleton.css' %}" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+</head>
+<body style="background-color: #222222">
+<div id="header">
+    <h3 style="padding: .5em"><a href="../../#" style="color: #ff4a00">Let's play...</a></h3>
+    <h1 id="tagline" style="text-align: center;color: #ff4a00;font-family: monospace">{{ g.name }}</h1>
+
+</div>
+
+
+<div class="container">
+    <!-- columns should be the immediate child of a .row -->
+    <div class="row">
+        <div class="eleven-one">
+            <table>
+                <tr>
+                    {% for song in g.song_set.all %}
+                        {% if genre.song_set.all.count == 0 %}
+                            <h4 style="text-align: center;color: #ffffff;">No data available!</h4>
+                        {% endif %}
+                        <td><a href="/song/{{ song.id }}">
+                            <div id="item_div" style="background-color: #333333; border-radius: 5px">
+                                {% if song.songdetails.all.count > 0 %}
+                                    <img src="{% static ''|add:song.songdetails.first.thumbnail %}" width="250px"
+                                         height="170"
+                                         style="border-top-left-radius: 5px; border-top-right-radius: 5px; "/>
+                                {% else %}
+                                    <img src="{% static 'img/placeholder.jpg' %}" width="250px"
+                                         height="170"
+                                         style="border-top-left-radius: 5px; border-top-right-radius: 5px; "/>
+                                {% endif %}
+                                <div id="song_title" style="height: 32px">{{ song.name | truncatechars:30 }}</div>
+                            </div>
+                        </a></td>
+                        {% if forloop.counter|divisibleby:"4" %}
+                            </tr>
+
+                            <tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="footer">Under development </br> Email: ashutiwari4@gmail.com</div>
+
+
+</body>
+
+</html>

@@ -3,8 +3,38 @@
 }
 
 #header {
+    text-align: left;
+    color: #ff4a00;
+    background: #333333;
+    margin-top: -30px;
+    padding-top: 2em;
+    padding-left: 2em;
+    padding-bottom: 1em;
+    font-family: fantasy;
+
+}
+
+#tagline {
+    font-family: cursive;
+    color: #ffffff;
+    margin-top: -20px;
+    margin-left: 100px;
+}
+
+#footer {
     text-align: center;
-    color: #b63d51;
+    color: #ceccbe;
+    background: #333333;
+    padding: 1em;
+}
+
+.genre {
+    background: #333333;
+    border-radius: 10px;
+    padding-left: .5em;
+    padding-right: .5em;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 #song_div {
@@ -16,8 +46,20 @@
 }
 
 a:link {
-    color: red;
     text-decoration: none;
+    text-anchor: none;
+    color: #ffffff;
+}
+
+a:focus {
+    color: #ffffff;
+    outline: 0;
+}
+
+a:hover {
+    color: #ffffff;
+    text-decoration: none;
+    text-anchor: none;
 }
 
 #song_name {
@@ -25,12 +67,13 @@ a:link {
 }
 
 h2 {
-    color: #ff2523;
+    color: #ff4a00;
+    padding-left: .5em;
 }
 
 #item_div {
-    border: 2px solid red;
     border-radius: 5px;
+    width: 250px;
 }
 
 #song_title {
@@ -38,10 +81,25 @@ h2 {
     height: 60px;
     max-height: 60px;
     overflow: hidden;
-    color: #ff2523;
+    color: #ffffff;
     text-align: center;
 }
 
-button:before {
-    color: #ff0;
+p {
+    color: white;
+    font-size: 22px;
+    font-family: monospace;
+}
+
+#moreButton {
+    text-align: end;
+    color: #ff4a00;
+    padding-right: 1em;
+
+}
+
+#moreButton:hover {
+    cursor: pointer;
+    cursor: hand;
+    text-shadow: 1px 1px 2px #ff5c00;
 }
