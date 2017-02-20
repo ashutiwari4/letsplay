@@ -18,9 +18,12 @@
     margin-top: -30px;
     padding-top: 2em;
     padding-left: 2em;
-    padding-bottom: 1em;
     font-family: fantasy;
 
+}
+
+td {
+    border-bottom: none;
 }
 
 #tagline {
@@ -42,8 +45,8 @@
     border-radius: 10px;
     padding-left: .5em;
     padding-right: .5em;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 #song_div {
@@ -76,7 +79,7 @@ a:hover {
 }
 
 h2 {
-    color: #ff4a00;
+    color: #999999;
     padding-left: .5em;
 }
 
@@ -112,3 +115,4 @@ p {
     cursor: hand;
     text-shadow: 1px 1px 2px #ff5c00;
 }
+

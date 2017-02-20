@@ -47,8 +47,34 @@
 <div id="splashscreen"><h1>Let's Play...</h1>
     <h3 id="tagline">Music opens our heart. Isn't it ?</h3></div>
 <div id="header">
-    <h1><a href="../../#" style="color: #ff4a00">Let's play...</a></h1>
-    <h5 id="tagline">Music opens our heart. Isn't it ?</h5>
+    <table style=" width:100%">
+        <tr>
+            <td colspan="6">
+                <div>
+                    <h1><a href="../../#" style="color: #ff4a00">Let's play...</a></h1>
+                    <h5 id="tagline">Music opens our heart. Isn't it ?</h5>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <img src="{% static 'img/android.png' %}" width="30px" height="30px"/>
+                            </td>
+                            <td>
+                                <a href="#" id="moreButton"><h6
+                                        style="color: #ff4a00; margin-bottom: -10px; font-family: Arial">Download
+                                    App</h6></a>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </div>
+            </td>
+        </tr>
+    </table>
 </div>
 
 
@@ -68,7 +94,7 @@
                         </table>
                         <section class="center slider" style="height: 250px; width: 960px;">
                             {% if genre.song_set.all.count == 0 %}
-                                <h4 style="text-align: center;color: #ffffff;">No data available!</h4>
+                                <h4 style="text-align: center;color: #aaaaaa;">No data available!</h4>
                             {% endif %}
                             {% for song in genre.song_set.all %}
                                 {% if forloop.counter <= 10 %}
@@ -131,17 +157,18 @@
             variableWidth: true
         });
     });
-
+    var flag = false;
     var readyStateCheckInterval = setInterval(function () {
-        if (document.readyState === "complete") {
+        if (document.readyState === "complete" && flag == false) {
             clearInterval(readyStateCheckInterval);
-            $('#splashscreen').fadeOut(2000)
-            $('#header').fadeIn(2000)
-            $('.container').fadeIn(2000)
+            $('#splashscreen').slideUp(50)
+            flag = true;
         }
-    }, 500);
+    }, 0);
 
 </script>
 
 </body>
 </html>
+
+Application for Android Developer Position.
