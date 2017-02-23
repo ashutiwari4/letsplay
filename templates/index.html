@@ -90,61 +90,61 @@
 </div>
 
 
-    <!-- .container is main centered wrapper -->
-    <div class="container" id="content">
-        <!-- columns should be the immediate child of a .row -->
-        <div class="row" >
-            <div class="twelve column" id="child">
-                <ul style="margin-top: 56px">
-                    {% for genre in genres %}
-                        <div class="genre">
-                            <table style="width:100%">
-                                <tr>
-                                    <th><h2>{{ genre.name }}</h2></th>
-                                    <th id="moreButton"><a href="/g/{{ genre.id }}" style="color: #ff4a00">More</a></th>
-                                </tr>
-                            </table>
-                            <section class="center slider" style="height: 200px; width: auto;margin-left: -6px;">
-                                {% if genre.song_set.all.count == 0 %}
-                                    <h4 style="text-align: center;color: #aaaaaa;">No data available!</h4>
+<!-- .container is main centered wrapper -->
+<div class="container" id="content">
+    <!-- columns should be the immediate child of a .row -->
+    <div class="row" id="child">
+        <div class="twelve column">
+            <ul style="margin-left: 25px">
+                {% for genre in genres %}
+                    <div class="genre">
+                        <table style="width:100%; margin-bottom: -8px">
+                            <tr>
+                                <th><h3 style="color: #777777">{{ genre.name }}</h3></th>
+                                <th id="moreButton"><a href="/g/{{ genre.id }}" style="color: #ff4a00">More</a></th>
+                            </tr>
+                        </table>
+                        <section class="center slider" style="height: 200px; width: auto;margin-left: -6px;">
+                            {% if genre.song_set.all.count == 0 %}
+                                <h4 style="text-align: center;color: #aaaaaa;">No data available!</h4>
+                            {% endif %}
+                            {% for song in genre.song_set.all %}
+                                {% if forloop.counter <= 10 %}
+                                    <a href="/song/{{ song.id }}">
+                                        <div id="item_div">
+                                            <img src="{% static ''|add:song.songdetails.first.thumbnail %}" width="150"
+                                                 height="150" style="border-radius: 5px"/>
+                                            <div id="song_title">{{ song.name | truncatechars:25 }}</div>
+                                        </div>
+                                    </a>
                                 {% endif %}
-                                {% for song in genre.song_set.all %}
-                                    {% if forloop.counter <= 10 %}
-                                        <a href="/song/{{ song.id }}">
-                                            <div id="item_div">
-                                                <img src="{% static ''|add:song.songdetails.first.thumbnail %}"
-                                                     width="150"
-                                                     height="150" style="border-radius: 5px"/>
-                                                <div id="song_title">{{ song.name | truncatechars:30 }}</div>
-                                            </div>
-                                        </a>
-                                    {% endif %}
-                                {% endfor %}
-                            </section>
-                        </div>
-                    {% endfor %}
-                </ul>
-            </div>
-
+                            {% endfor %}
+                        </section>
+                    </div>
+                {% endfor %}
+            </ul>
 
             <div class="pagination one-fourth column">
-    <span class="step-links one-fourth column">
+            <span class="step-links one-fourth column" style="color: #777777">
         {% if genres.has_previous %}
             <a href="?page={{ genres.previous_page_number }}">previous</a>
         {% endif %}
 
-        <span class="current">
+                <span class="current" style="color: #777777">
             Page {{ genres.number }} of {{ genres.paginator.num_pages }}.
         </span>
 
-        {% if genres.has_next %}
-            <a href="?page={{ genres.next_page_number }}">next</a>
-        {% endif %}
+                {% if genres.has_next %}
+                    <a href="?page={{ genres.next_page_number }}">next</a>
+                {% endif %}
     </span>
             </div>
+            <div id="footer">Under development </br> Email: ashutiwari4@gmail.com</div>
         </div>
-        <div id="footer" style="margin-top: 30px">Under development </br> Email: ashutiwari4@gmail.com</div>
+
     </div>
+
+</div>
 
 <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="{% static 'slick/slick.js' %}"></script>
