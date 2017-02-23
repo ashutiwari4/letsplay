@@ -17,7 +17,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request):
     queryset = Genre.objects.all()
-    paginator = Paginator(queryset, 5)
+    paginator = Paginator(queryset, 3)
     page = request.GET.get('page')
     try:
         queryset = paginator.page(page)
