@@ -1,5 +1,5 @@
 from rest_framework import routers
-from views import SongList, GenreList, SongLinkList
+from .views import SongList, GenreList, SongLinkList
 
 router = routers.SimpleRouter()
 router.register(r'songs', SongList)
