@@ -31,7 +31,7 @@
                         <td><a href="/song/{{ song.id }}">
                             <div id="item_div" style="background-color: #333333; border-radius: 5px">
                                 {% if song.songdetails.all.count > 0 %}
-                                    <img src="{% static ''|add:song.songdetails.first.thumbnail %}" width="250px"
+                                    <img src="{% static ''|add:song.imageDetails.first.thumbnail %}" width="250px"
                                          height="170"
                                          style="border-top-left-radius: 5px; border-top-right-radius: 5px; "/>
                                 {% else %}

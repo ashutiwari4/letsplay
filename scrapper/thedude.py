@@ -83,7 +83,6 @@ def songinfo(query, id):
                 "name": id,
                 "thumbnail": '/img/thumbnail/' + id + "." + item['encodingFormat'],
                 "image_url": '../img/image/' + id + "." + item['encodingFormat'],
-                "link": item['hostPageDisplayUrl'],
                 "image_encoding": item['encodingFormat'],
                 "accent_color": item['accentColor']
             }
@@ -122,9 +121,6 @@ for song in songList:
     chords = ""
     for tag in content.findAll('p'):
         chords += str(tag)
-
-
-
 
     data = {
         "name": title,
