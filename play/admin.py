@@ -6,16 +6,22 @@ from .models import *
 
 
 class SongDetailsFormAdmin(admin.StackedInline):
-    model = SongDetailsForm
+    model = ImageDetailsForm
+    extra = 1
+
+
+class VideoLinkDetailsFormForAdmin(admin.StackedInline):
+    model = VideoLinksForm
     extra = 1
 
 
 class SongAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['name', 'tabs_and_chords', 'tags', 'genre']})
+        (None, {'fields': ['name', 'tabs', 'chords', 'tags', 'genre']})
     ]
-    inlines = [SongDetailsFormAdmin]
+    inlines = [SongDetailsFormAdmin, VideoLinkDetailsFormForAdmin]
 
 
 admin.site.register(Genre)
 admin.site.register(Song, SongAdmin)
+admin.site.register(LinkType)

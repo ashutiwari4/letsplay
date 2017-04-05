@@ -1,11 +1,14 @@
 from __future__ import unicode_literals
 
+from ckeditor.fields import RichTextField
 from django.db import models
 
 
 # Create your models here.
 
+
 class Genre(models.Model):
+    gid = models.IntegerField()
     name = models.CharField(max_length=16)
 
     def __str__(self):
@@ -14,7 +17,8 @@ class Genre(models.Model):
 
 class Song(models.Model):
     name = models.CharField(max_length=200)
-    tabs_and_chords = models.TextField()
+    tabs = RichTextField(config_name='awesome_ckeditor', blank=True)
+    chords = RichTextField(config_name='awesome_ckeditor')
     tags = models.CharField(max_length=100)
     genre = models.ForeignKey(Genre)
 
@@ -22,10 +26,23 @@ class Song(models.Model):
         return self.name
 
 
-class SongDetailsForm(models.Model):
+class LinkType(models.Model):
+    source = models.CharField(max_length=20)
+    type = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.source
+
+
+class ImageDetailsForm(models.Model):
     thumbnail = models.CharField(max_length=300)
     image_url = models.CharField(max_length=300)
-    link = models.CharField(max_length=300)
     image_encoding = models.CharField(max_length=20)
     accent_color = models.CharField(max_length=10)
-    name = models.ForeignKey(Song, related_name='songdetails')
+    name = models.ForeignKey(Song, related_name='imageDetails')
+
+
+class VideoLinksForm(models.Model):
+    link = models.CharField(max_length=300)
+    type = models.ForeignKey(LinkType)
+    name = models.ForeignKey(Song, related_name='videoLink')

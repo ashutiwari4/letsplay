@@ -92,6 +92,6 @@ class ShowMore(ModelViewSet):
 
 
 class SongDetails(ModelViewSet):
-    queryset = SongDetailsForm.objects.all()
+    queryset = ImageDetailsForm.objects.all()
     serializer_class = SongLinkList
     pagination_class = StandardResultsSetPagination

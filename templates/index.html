@@ -108,7 +108,7 @@
                                 {% if forloop.counter <= 10 %}
                                     <a href="/song/{{ song.id }}">
                                         <div id="item_div">
-                                            <img src="{% static ''|add:song.songdetails.first.thumbnail %}" width="150"
+                                            <img src="{% static ''|add:song.imageDetails.first.thumbnail %}" width="150"
                                                  height="150" style="border-radius: 5px"/>
                                             <div id="song_title">{{ song.name | truncatechars:25 }}</div>
                                         </div>

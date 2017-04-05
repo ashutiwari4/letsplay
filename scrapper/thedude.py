@@ -6,7 +6,10 @@ import json
 import urllib, httplib
 import re
 
-url = "http://tabandchord.com/category/chord/chord-hindi/?first_letter=A"
+#urlList = []
+url = ("http://tabandchord.com/category/chord/chord-hindi/?first_letter=A")
+#urlList.append("http://tabandchord.com/tab/tab-hindi/?first_letter=A")
+
 hdr = {'User-Agent': 'Mozilla/5.0'}
 soup = BeautifulSoup(urllib2.urlopen(urllib2.Request(url, headers=hdr)), "lxml")
 
@@ -36,7 +39,7 @@ server_url = 'http://127.0.0.1:8000/api/songs/'
 server_details_url = "http://127.0.0.1:8000/api/song_details/"
 
 
-class SongDetailsForm(object):
+class SongImageForm(object):
     def __init__(self, thumbnail, image_url, link, image_encoding, accent_color):
         self.thumbnail = thumbnail
         self.image_url = image_url
@@ -116,20 +119,23 @@ for song in songList:
     title = soup.find("h1", {"class": "entry-title"}).getText().strip()
     title = unicodedata.normalize('NFKD', title).encode('ascii', 'ignore')
     content = soup.find("div", {"class": "entry-content"})
-    tabs_n_chord = ""
+    chords = ""
     for tag in content.findAll('p'):
-        tabs_n_chord += str(tag)
+        chords += str(tag)
+
+
+
 
     data = {
         "name": title,
-        "tabs_and_chords": tabs_n_chord,
+        "chords": chords,
         "tags": "Hindi, Bollywood",
-        "genre": 15
+        "genre": 2
     }
     try:
-        if tabs_n_chord != '':
+        if chords != '':
             r = requests.post(server_url, data)
-            print '1. tab and chords posted:  '
+            print '1.chords posted:  '
             print (r.status_code, r.reason)
             songinfo(title, str(json.loads(r._content)['id']))
 
