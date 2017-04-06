@@ -68,19 +68,19 @@
 <div id="left_side">
     <table style="margin-top: 10px">
         <tr>
-            <div class="side_btn">Let's Play</div>
+            <div class="side_btn active" id="Letsplay">Home</div>
         </tr>
         <tr>
-            <div class="side_btn">Top Picks</div>
+            <div class="side_btn" id="TopPicks">Top Picks</div>
         </tr>
         <tr>
-            <div class="side_btn">Latest</div>
+            <div class="side_btn" id="Latest">Latest</div>
         </tr>
         <tr>
-            <div class="side_btn">Near By Institute</div>
+            <div class="side_btn" id="NearBy">Near By Institute</div>
         </tr>
         <tr>
-            <div class="side_btn">Support Us!</div>
+            <div class="side_btn" id="SupportUs">Support Us!</div>
         </tr>
     </table>
 </div>
@@ -91,6 +91,8 @@
     <!-- columns should be the immediate child of a .row -->
     <div class="row" id="child">
         <div class="twelve column">
+          <div class="tab-content">
+        <div class="tab-pane active" id="divLetsplay">
             <ul style="margin-left: 25px">
                 {% for genre in genres %}
                     <div class="genre">
@@ -136,6 +138,25 @@
     </span>
             </div>
             <div id="footer">Under development </br> Email: ashutiwari4@gmail.com</div>
+        </div>
+        <div class="tab-pane" id="divTopPicks">
+            <p> TopPicks</p>
+        </div>
+            <div class="tab-pane" id="divLatest">
+            <p> Latest</p>
+        </div>
+            <div class="tab-pane" id="divNearBy">
+            <p> NearBy</p>
+        </div>
+            <div class="tab-pane" id="divSupportUs">
+            <p> Support Us!</p>
+        </div>
+          </div>
+            <div class="tab-pane" id="search">
+            <p> Search result for As</p>
+        </div>
+
+        </div>
         </div>
 
     </div>

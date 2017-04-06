@@ -1,7 +1,7 @@
 <html style="overflow: auto">
 {% load staticfiles %}
 <head>
-    <title>Hello-{{ song.name }}</title>
+    <title>{{ song.name }}</title>
     <link href="{% static 'css/normalize.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/skeleton.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/app.css' %}" rel="stylesheet"/>
@@ -33,7 +33,7 @@
                     <a class="button" href="#tabs">Tabs</a>
                 </li>
                 <li>
-                    <a class="button active" href="#lyrics">Lyrics</a>
+                    <a class="button" href="#lyrics">Lyrics</a>
                 </li>
                 <li>
                     <a class="button" href="#videos">Videos</a>
@@ -74,7 +74,7 @@
                         <h3 style="color: #ceccbe;font-family: fantasy;padding-top:  1em;"> Watch it on YouTube : </h3>
                         </br>
                         <embed width="854" height="480" src="https://www.youtube.com/v/XGSy3_Czz8k">
-                     {% else %}
+                    {% else %}
                         <p style="text-align: center">Video is not available!</p>
                     {% endif %}
 

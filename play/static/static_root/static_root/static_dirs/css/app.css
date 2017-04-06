@@ -227,7 +227,7 @@ ul.tab-nav li a.button {
 }
 
 ul.tab-nav li a.active.button {
-    border-bottom: 1px solid #111111;
+    border-bottom: 1px solid #222222;
 }
 
 .tab-content .tab-pane {

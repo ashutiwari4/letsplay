@@ -17,7 +17,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request):
     queryset = Genre.objects.all()
-    paginator = Paginator(queryset, 3)
+    paginator = Paginator(queryset, 10)
     page = request.GET.get('page')
     try:
         queryset = paginator.page(page)
@@ -95,3 +95,5 @@ class SongDetails(ModelViewSet):
     queryset = ImageDetailsForm.objects.all()
     serializer_class = SongLinkList
     pagination_class = StandardResultsSetPagination
+
+

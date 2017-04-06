@@ -172,6 +172,15 @@ p {
 
 .side_btn:hover {
     color: #ffffff;
+    background-color: #777777;
+    cursor: hand;
+    border-left: 3px solid #ff5c00;
+
+}
+
+
+.side_btn.active {
+    color: #ffffff;
     background-color: #333333;
     cursor: hand;
     border-left: 3px solid #ff5c00;
