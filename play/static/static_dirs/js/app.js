@@ -1,16 +1,13 @@
-$(document).ready(function () {
+$(function() {
+    $('ul.tab-nav li a.button').click(function() {
+        var href = $(this).attr('href');
 
-})
+        $('li a.active.button', $(this).parent().parent()).removeClass('active');
+        $(this).addClass('active');
 
+        $('.tab-pane.active', $(href).parent()).removeClass('active');
+        $(href).addClass('active');
 
-function loadData(url,page_no) {
-    var page_count = 10;
-    $.ajax({
-        url: "api/song_links/?format=json", success: function (result) {
-            console.log(result)
-            for (var i = 0; i < page_count; i++) {
-                $("#song_id").append("ashu");
-            }
-        }
+        return false;
     });
-}
+});

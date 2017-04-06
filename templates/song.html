@@ -1,34 +1,85 @@
-<html>
+<html style="overflow: auto">
 {% load staticfiles %}
 <head>
     <title>Hello-{{ song.name }}</title>
-    <link href="{% static 'css/app.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/normalize.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/skeleton.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/app.css' %}" rel="stylesheet"/>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="{% static 'js/app.js' %}"></script>
 </head>
 <body style="background-color: #222222">
-<div id="header">
+<div id="header" style="margin-top: auto">
     <h3 style="padding: .5em"><a href="../../#" style="color: #ff4a00">Let's play...</a></h3>
-    <h1 id="tagline" style="text-align: center;color: #ff4a00;font-family: monospace">{{ song.name }}</h1>
-
+    <h3 id="tagline" style="text-align: center;color: #ceccbe;font-family: monospace">{{ song.name }}</h3>
 </div>
 
 
 <div class="container">
     <!-- columns should be the immediate child of a .row -->
+
     <div class="row">
         <div class="eleven">
+            <ul class="tab-nav">
 
-            {% if "youtube" in song.songdetails.first.link %}
-                <h3 style="color: #ceccbe;font-family: fantasy;padding-top:  1em;"> Watch it on YouTube : </h3></br>
-                <embed width="854" height="480" src="https://www.youtube.com/v/XGSy3_Czz8k">
-            {% endif %}
-            <ul>
-                <p>{{ song.chords |safe }}</p>
+                <li>
+                    <a class="button active" href="#chords">Chords</a>
+                </li>
+                <li>
+                    <a class="button" href="#tabs">Tabs</a>
+                </li>
+                <li>
+                    <a class="button active" href="#lyrics">Lyrics</a>
+                </li>
+                <li>
+                    <a class="button" href="#videos">Videos</a>
+                </li>
             </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="chords">
+                    <ul>
+                        {% if song.chords|length > 0 %}
+                            <p>{{ song.chords |safe }}</p>
+                        {% else %}
+                            <p style="text-align: center">Chords are not available!</p>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="tab-pane" id="tabs">
+                    <ul>
+                        {% if song.tabs|length > 0 %}
+                            <p>{{ song.tabs | safe }}</p>
+                        {% else %}
+                            <p style="text-align: center">Tabs is not available!</p>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="tab-pane" id="lyrics">
+                    <ul>
+                        {% if song.lyrics|length > 0 %}
+                            <p>{{ song.lyrics | safe }}</p>
+                        {% else %}
+                            <p style="text-align: center">Lyrics is not available!</p>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div class="tab-pane" id="videos">
+                    {% if "youtube" in song.videoLink.first.link %}
+                        <h3 style="color: #ceccbe;font-family: fantasy;padding-top:  1em;"> Watch it on YouTube : </h3>
+                        </br>
+                        <embed width="854" height="480" src="https://www.youtube.com/v/XGSy3_Czz8k">
+                     {% else %}
+                        <p style="text-align: center">Video is not available!</p>
+                    {% endif %}
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

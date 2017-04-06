@@ -17,7 +17,7 @@ class VideoLinkDetailsFormForAdmin(admin.StackedInline):
 
 class SongAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['name', 'tabs', 'chords', 'tags', 'genre']})
+        (None, {'fields': ['name', 'movie', 'lyrics', 'tabs', 'chords', 'tags', 'genre']})
     ]
     inlines = [SongDetailsFormAdmin, VideoLinkDetailsFormForAdmin]
 
