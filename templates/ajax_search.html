@@ -1,7 +1,23 @@
+{% load staticfiles %}
 {% if songs.count > 0 %}
-    {% for song in songs %}
-        <li>{{ song.name }}</li>
-    {% endfor %}
+    <table>
+        <tr>
+            {% for song in songs %}
+                <td><a href="/song/{{ song.id }}">
+                    <div id="search_item_div">
+                        <img src="{% static ''|add:song.imageDetails.first.thumbnail %}" width="120px"
+                             height="120px" style="border-radius: 5px"/>
+                        <div id="song_title" width="120px" height="120px">{{ song.name | truncatechars:25 }}</div>
+                    </div>
+                </a></td>
+                {% if forloop.counter|divisibleby:"4" %}
+                    </tr>
+
+                    <tr>
+                {% endif %}
+            {% endfor %}
+            </tr>
+    </table>
 {% else %}
-    <li>No result found!</li>
+    <h6 style="color: #777777">No result found!</h6>
 {% endif %}

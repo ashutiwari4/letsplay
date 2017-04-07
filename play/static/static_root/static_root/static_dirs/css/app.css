@@ -21,8 +21,8 @@ body {
 }
 
 #left_side {
-    width: 210px;
-    height: 82%;
+    width: 150px;
+    height: 100%;
     background: #222222;
     margin-top: -23px;
     color: #333333;
@@ -32,7 +32,7 @@ body {
 }
 
 #content {
-    height: 80%;
+    height: 88%;
     width: 100%;
     margin-top: -25px;
     overflow: hidden;
@@ -59,11 +59,17 @@ body {
     text-align: left;
     color: #333333;
     background: #222222;
-    margin-top: -30px;
-    box-shadow: 0px 2px;
+    margin-top: -25px;
+    box-shadow: 0 4px 8px 0 rgba(17, 17, 17, 0.2), 0 6px 20px 0 #111111;
     padding-left: 2em;
+    padding-bottom: -.3em;
+    margin-bottom: -2px;
     font-family: fantasy;
 
+}
+
+.htd {
+    padding: 0px 0px;
 }
 
 td {
@@ -132,6 +138,11 @@ h2 {
     width: 250px;
 }
 
+#search_item_div {
+    border-radius: 5px;
+    width: 100px;
+}
+
 #song_title {
     padding: .5em;
     height: 60px;
@@ -174,24 +185,31 @@ p {
     color: #ffffff;
     background-color: #333333;
     cursor: hand;
+}
+
+.side_btn.active {
+    color: #ffffff;
+    background-color: #333333;
+    cursor: hand;
     border-left: 3px solid #ff5c00;
 
 }
 
 #search {
-    height: 60px;
-    border-radius: 25px;
+    height: 40px;
+    border-radius: 20px;
     background: #36383d;
     /* height: 55%; */
     width: 100%;
     max-width: 850px;
-    padding: 0 2% 0 11%;
-    font-size: 100%;
+    padding: 0 0 0 5%;
+    font-size: 80%;
     color: rgba(255, 255, 255, .8);
     letter-spacing: .7px;
     position: relative;
-    top: 50%;
-    margin-top: 3em;
+    border-style: initial;
+    margin-top: 1.5em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 #222222;
     font-family: Arial;
     transform: translate(0, -25%);
     -webkit-transform: translate(0, -25%);
@@ -236,4 +254,17 @@ ul.tab-nav li a.active.button {
 
 .tab-content .tab-pane.active {
     display: block;
+}
+
+#search-result {
+    background: #222222;
+    z-index: 3;
+    position: absolute;
+    margin-top: -23px;
+    width: 48%;
+    padding: 20px;
+    max-height: 450px;
+    overflow: scroll;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 #36383d;
+
 }

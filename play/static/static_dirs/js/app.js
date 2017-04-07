@@ -33,7 +33,7 @@ $(function () {
             console.log("hi")
             $("#search-result").hide();
             return;
-        }else $("#search-result").show();
+        } else $("#search-result").show();
         $.ajax({
             type: "POST",
             url: "/search/",
@@ -49,9 +49,20 @@ $(function () {
 });
 
 function searchSuccess(data, textStatus, jqXHR) {
-    $('#searchList').html(data);
+    $('#search-result').html(data);
 }
 
 $(document).ready(function () {
- $("#search-result").hide();
+    $("#search-result").hide();
+});
+
+
+$(document).click(function(evt){
+       if(evt.target.id == "search-result")
+          return;
+       else {
+           if($("#search-result").is(":visible")){
+                $("#search-result").hide();
+           }
+       }
 });
