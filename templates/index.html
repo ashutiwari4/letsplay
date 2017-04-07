@@ -53,10 +53,10 @@
                 <input id="search" type="text"
                        placeholder="Search for songs, artists, playlists and more"
                        autocomplete="off">
-                <div id="search-result" >
+                <div id="search-result">
                 </div>
             </td>
-            <td class="htd"  width="12%" style="text-align: right">
+            <td class="htd" width="12%" style="text-align: right">
                 <img src="{% static 'img/android.png' %}" style="margin-top: -20px" width="30px" height="30px"/>
             </td>
             <td class="htd" style="padding-left: 20px" width="23%">
@@ -94,38 +94,46 @@
     <!-- columns should be the immediate child of a .row -->
     <div class="row" id="child">
         <div class="twelve column">
-          <div class="tab-content">
-        <div class="tab-pane active" id="divLetsplay">
-            <ul style="margin-left: 25px">
-                {% for genre in genres %}
-                    <div class="genre">
-                        <table style="width:100%; margin-bottom: -8px">
-                            <tr>
-                                <th><h3 style="color: #777777">{{ genre.name }}</h3></th>
-                                <th id="moreButton"><a href="/g/{{ genre.id }}" style="color: #ff4a00">More</a></th>
-                            </tr>
-                        </table>
-                        <section class="center slider" style="height: 200px; width: auto;margin-left: -6px;">
-                            {% if genre.song_set.all.count == 0 %}
-                                <h4 style="text-align: center;color: #aaaaaa;">No data available!</h4>
-                            {% endif %}
-                            {% for song in genre.song_set.all %}
-                                {% if forloop.counter <= 10 %}
-                                    <a href="/song/{{ song.id }}">
-                                        <div id="item_div">
-                                            <img src="{% static ''|add:song.imageDetails.first.thumbnail %}" width="120"
-                                                 height="120" style="border-radius: 5px"/>
-                                            <div id="song_title">{{ song.name | truncatechars:25 }}</div>
-                                        </div>
-                                    </a>
-                                {% endif %}
-                            {% endfor %}
-                        </section>
-                    </div>
-                {% endfor %}
-            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="divLetsplay">
+                    <ul style="margin-left: 25px">
+                        {% for genre in genres %}
+                            <div class="genre">
+                                <table style="width:100%; margin-bottom: -8px">
+                                    <tr>
+                                        <th><h3 style="color: #777777">{{ genre.name }}</h3></th>
+                                        <th id="moreButton"><a href="/g/{{ genre.id }}" style="color: #ff4a00">More</a>
+                                        </th>
+                                    </tr>
+                                </table>
+                                <section class="center slider" style="height: 200px; width: auto;margin-left: -6px;">
+                                    {% if genre.song_set.all.count == 0 %}
+                                        <h4 style="text-align: center;color: #aaaaaa;">No data available!</h4>
+                                    {% endif %}
+                                    {% for song in genre.song_set.all %}
+                                        {% if forloop.counter <= 10 %}
+                                            <a href="/song/{{ song.id }}">
+                                                <div id="item_div">
 
-            <div class="pagination one-fourth column">
+                                                    {% if song.imageDetails.first.thumbnail|length > 0 %}
+                                                        <img src="{% static ''|add:song.imageDetails.first.thumbnail %}"
+                                                             width="120"
+                                                             height="120" style="border-radius: 5px"/>
+                                                    {% else %}
+                                                        <img src="{% static ''|add:'img/placeholder.jpg' %}" width="120"
+                                                             height="120" style="border-radius: 5px"/>
+                                                    {% endif %}
+                                                    <div id="song_title">{{ song.name | truncatechars:25 }}</div>
+                                                </div>
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                </section>
+                            </div>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="pagination one-fourth column">
             <span class="step-links one-fourth column" style="color: #777777">
         {% if genres.has_previous %}
             <a href="?page={{ genres.previous_page_number }}">previous</a>
@@ -139,22 +147,22 @@
                     <a href="?page={{ genres.next_page_number }}">next</a>
                 {% endif %}
     </span>
+                    </div>
+                    <div id="footer">Under development </br> Email: ashutiwari4@gmail.com</div>
+                </div>
+                <div class="tab-pane" id="divTopPicks">
+                    <p> TopPicks</p>
+                </div>
+                <div class="tab-pane" id="divLatest">
+                    <p> Latest</p>
+                </div>
+                <div class="tab-pane" id="divNearBy">
+                    <p> NearBy</p>
+                </div>
+                <div class="tab-pane" id="divSupportUs">
+                    <p> Support Us!</p>
+                </div>
             </div>
-            <div id="footer">Under development </br> Email: ashutiwari4@gmail.com</div>
-        </div>
-        <div class="tab-pane" id="divTopPicks">
-            <p> TopPicks</p>
-        </div>
-            <div class="tab-pane" id="divLatest">
-            <p> Latest</p>
-        </div>
-            <div class="tab-pane" id="divNearBy">
-            <p> NearBy</p>
-        </div>
-            <div class="tab-pane" id="divSupportUs">
-            <p> Support Us!</p>
-        </div>
-        </div>
         </div>
 
     </div>

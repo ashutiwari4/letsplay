@@ -17,7 +17,7 @@ class Genre(models.Model):
 
 class Song(models.Model):
     name = models.CharField(max_length=200)
-    movie = models.CharField(max_length=200)
+    movie = models.CharField(max_length=200, blank=True)
     lyrics = RichTextField(config_name='awesome_ckeditor', blank=True)
     tabs = RichTextField(config_name='awesome_ckeditor', blank=True)
     chords = RichTextField(config_name='awesome_ckeditor')
