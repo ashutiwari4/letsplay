@@ -1,7 +1,7 @@
 from requests import Response
 
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.template import loader
 from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
@@ -97,3 +97,11 @@ class SongDetails(ModelViewSet):
     pagination_class = StandardResultsSetPagination
 
 
+def search_songs(request):
+    if request.method == 'POST':
+        search_text = request.POST['search_text']
+    else:
+        search_text = ''
+
+    songs = Song.objects.filter(name__contains=search_text)
+    return render_to_response('ajax_search.html', {'songs': songs})

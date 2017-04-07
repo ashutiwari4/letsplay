@@ -1,0 +1,7 @@
+{% if songs.count > 0 %}
+    {% for song in songs %}
+        <li>{{ song.name }}</li>
+    {% endfor %}
+{% else %}
+    <li>No result found!</li>
+{% endif %}

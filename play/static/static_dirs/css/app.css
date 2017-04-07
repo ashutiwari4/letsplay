@@ -178,7 +178,6 @@ p {
 
 }
 
-
 .side_btn.active {
     color: #ffffff;
     background-color: #333333;
@@ -245,4 +244,12 @@ ul.tab-nav li a.active.button {
 
 .tab-content .tab-pane.active {
     display: block;
+}
+
+#search-result {
+    background: #999999;
+    z-index: 3;
+    position: absolute;
+    margin-top: -30px;
+    width: 47%;
 }

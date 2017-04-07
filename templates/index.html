@@ -49,9 +49,14 @@
                 <h1><a href="../../#" style="color: #ff4a00">Let's play...</a></h1>
             </td>
             <td width="50%" style="text-align: center">
+                {% csrf_token %}
                 <input id="search" type="text"
                        placeholder="Search for songs, artists, playlists and more"
                        autocomplete="off">
+
+                <div id="search-result" >
+                    <ul id="searchList"></ul>
+                </div>
             </td>
             <td width="12%" style="text-align: right">
                 <img src="{% static 'img/android.png' %}" width="30px" height="30px"/>
